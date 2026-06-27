@@ -808,5 +808,35 @@
     "id": "50917825-e4c0-46c6-9556-a8d26212dc32",
     "isSold": false,
     "createdAt": "2026-06-27T13:58:22.895Z"
+  },
+  {
+    "name": "Scorbunny",
+    "set": "McDonald's Collection 2021",
+    "number": "16/25",
+    "type": "Fire",
+    "rarity": "Common",
+    "condition": "Near Mint",
+    "price": 0,
+    "quantity": 1,
+    "imageUrl": "https://images.pokemontcg.io/mcd21/16_hires.png",
+    "description": "",
+    "id": "14494671-103b-4fcd-8e18-4a1c16f481f9",
+    "isSold": false,
+    "createdAt": "2026-06-27T15:00:49.960Z"
+  },
+  {
+    "name": "Growlithe",
+    "set": "McDonald's Collection 2022",
+    "number": "04/15",
+    "type": "Fire",
+    "rarity": "Common",
+    "condition": "Near Mint",
+    "price": 0,
+    "quantity": 1,
+    "imageUrl": "https://images.pokemontcg.io/mcd22/4_hires.png",
+    "description": "",
+    "id": "99be4c3d-5f68-46ab-95a0-260d732cd195",
+    "isSold": false,
+    "createdAt": "2026-06-27T15:05:03.605Z"
   }
 ]

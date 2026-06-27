@@ -1,5 +1,6 @@
 import { isAuthenticated } from "@/lib/auth"
 import { getCards } from "@/lib/data"
+import { buildTime, commitSha } from "@/lib/version"
 import Link from "next/link"
 
 export default async function AdminPage(props: {
@@ -76,6 +77,9 @@ export default async function AdminPage(props: {
             </button>
           </form>
         </div>
+        <p className="text-xs text-gray-400 mt-8">
+          Build: {buildTime.replace('T', ' ').replace('Z', '')} UTC &middot; {commitSha.slice(0, 7)}
+        </p>
       </div>
     )
   }
