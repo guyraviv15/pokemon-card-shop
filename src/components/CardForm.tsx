@@ -149,6 +149,16 @@ export default function CardForm({ card }: { card?: PokemonCard }) {
     setError('')
 
     try {
+      if (!isEdit) {
+        const existing = await fetch('/api/cards').then(r => r.json())
+        const cards: PokemonCard[] = existing.cards || existing
+        if (cards.some(c => c.name.toLowerCase() === form.name.toLowerCase())) {
+          alert("You already did this card")
+          setLoading(false)
+          return
+        }
+      }
+
       const url = isEdit ? `/api/cards?id=${card.id}` : '/api/cards'
       const method = isEdit ? 'PUT' : 'POST'
 

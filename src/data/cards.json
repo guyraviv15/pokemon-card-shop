@@ -793,5 +793,20 @@
     "id": "47bd9bcc-2572-4660-8cde-a83dd8cd237a",
     "isSold": false,
     "createdAt": "2026-06-27T09:16:09.455Z"
+  },
+  {
+    "name": "Durant",
+    "set": "Journey Together",
+    "number": "014/159",
+    "type": "Grass",
+    "rarity": "Common",
+    "condition": "Near Mint",
+    "price": 0,
+    "quantity": 1,
+    "imageUrl": "https://images.pokemontcg.io/sv9/14_hires.png",
+    "description": "",
+    "id": "50917825-e4c0-46c6-9556-a8d26212dc32",
+    "isSold": false,
+    "createdAt": "2026-06-27T13:58:22.895Z"
   }
 ]

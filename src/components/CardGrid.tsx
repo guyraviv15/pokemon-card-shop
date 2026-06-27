@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link"
 import type { PokemonCard } from "@/lib/types"
+import Translate from "./Translate"
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/\s+/g, '-')
@@ -22,7 +23,7 @@ export default function CardGrid({ cards }: { cards: PokemonCard[] }) {
   if (cards.length === 0) {
     return (
       <div className="text-center py-16 text-gray-500">
-        <p className="text-lg">No cards found.</p>
+        <p className="text-lg"><Translate textKey="cards.noCards" /></p>
       </div>
     )
   }
@@ -35,7 +36,7 @@ export default function CardGrid({ cards }: { cards: PokemonCard[] }) {
           href={`/cards/${slugify(card.name)}`}
           className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg hover:border-red-200 transition-all"
         >
-          <div className="aspect-[3/4] bg-gray-100 flex items-center justify-center p-4">
+          <div className="aspect-[3/4] bg-gray-100 flex items-center justify-center p-1">
             {card.imageUrl ? (
               <img
                 src={card.imageUrl}
@@ -47,27 +48,31 @@ export default function CardGrid({ cards }: { cards: PokemonCard[] }) {
               <span className="text-4xl">🃏</span>
             )}
           </div>
-          <div className="p-4">
-            <div className="flex items-center justify-between mb-1">
-              <h3 className="font-semibold text-gray-900">{card.name}</h3>
-              <span className="text-xs text-gray-500">{card.number}</span>
+          <div className="p-2">
+            <div className="flex items-center justify-between mb-0.5">
+              <h3 className="font-semibold text-gray-900 text-xs leading-tight truncate max-w-[70%]">{card.name}</h3>
+              <span className="text-[10px] text-gray-500">{card.number}</span>
             </div>
-            <p className="text-sm text-gray-500 mb-2">{card.set}</p>
-            <div className="flex items-center gap-2 mb-3">
-              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${rarityColor(card.rarity)}`}>
+            <p className="text-[10px] text-gray-500 mb-1 truncate">{card.set}</p>
+            <div className="flex items-center gap-1 mb-1.5">
+              <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium leading-tight ${rarityColor(card.rarity)}`}>
                 {card.rarity}
               </span>
-              <span className="text-xs text-gray-500">{card.condition}</span>
+              <span className="text-[10px] text-gray-500">{card.condition}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-bold text-red-600">
+              <span className="text-sm font-bold text-red-600">
                 ${card.price.toFixed(2)}
               </span>
               {card.quantity > 1 && (
-                <span className="text-xs text-gray-400">Qty: {card.quantity}</span>
+                <span className="text-[10px] text-gray-400">
+                  <Translate textKey="cards.qty" vars={{ count: card.quantity }} />
+                </span>
               )}
               {card.quantity === 0 && (
-                <span className="text-xs text-red-500 font-medium">Sold Out</span>
+                <span className="text-[10px] text-red-500 font-medium">
+                  <Translate textKey="cards.soldOut" />
+                </span>
               )}
             </div>
           </div>

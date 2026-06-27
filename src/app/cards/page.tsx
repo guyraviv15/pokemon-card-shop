@@ -1,6 +1,8 @@
 import { getCards, getSets, getTypes, getRarities } from "@/lib/data"
 import CardGrid from "@/components/CardGrid"
 import FilterSidebar from "@/components/FilterSidebar"
+import Translate from "@/components/Translate"
+import PageWrapper from "@/components/PageWrapper"
 
 export default async function CardsPage(props: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
@@ -42,15 +44,21 @@ export default async function CardsPage(props: {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">All Cards</h1>
-      <div className="flex gap-8">
-        <FilterSidebar sets={sets} types={types} rarities={rarities} />
-        <div className="flex-1">
-          <p className="text-sm text-gray-500 mb-4">{filtered.length} card{filtered.length !== 1 ? 's' : ''} found</p>
-          <CardGrid cards={filtered} />
+    <PageWrapper>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          <Translate textKey="cards.title" />
+        </h1>
+        <div className="flex gap-8">
+          <FilterSidebar sets={sets} types={types} rarities={rarities} />
+          <div className="flex-1">
+            <p className="text-sm text-gray-500 mb-4">
+              <Translate textKey={filtered.length === 1 ? 'cards.found' : 'cards.found_plural'} vars={{ count: filtered.length }} />
+            </p>
+            <CardGrid cards={filtered} />
+          </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }

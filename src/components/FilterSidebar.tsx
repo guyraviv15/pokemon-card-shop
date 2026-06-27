@@ -2,6 +2,8 @@
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { useLang } from './LanguageProvider'
+import { t } from '@/lib/translations'
 
 export default function FilterSidebar({
   sets,
@@ -15,6 +17,7 @@ export default function FilterSidebar({
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const { lang } = useLang()
 
   const [search, setSearch] = useState(searchParams.get('search') || '')
   const [minPrice, setMinPrice] = useState(searchParams.get('minPrice') || '')
@@ -48,32 +51,32 @@ export default function FilterSidebar({
     <aside className="w-64 shrink-0">
       <div className="sticky top-24 space-y-6">
         <form onSubmit={handleSearch}>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.search', lang)}</label>
           <div className="flex gap-1">
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Name, set, type..."
+              placeholder={t('filter.searchPlaceholder', lang)}
               className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             />
             <button
               type="submit"
               className="px-3 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors"
             >
-              Go
+              {t('filter.go', lang)}
             </button>
           </div>
         </form>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Set</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.set', lang)}</label>
           <select
             value={searchParams.get('set') || ''}
             onChange={e => updateParam('set', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
-            <option value="">All Sets</option>
+            <option value="">{t('filter.allSets', lang)}</option>
             {sets.map(s => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -81,13 +84,13 @@ export default function FilterSidebar({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.type', lang)}</label>
           <select
             value={searchParams.get('type') || ''}
             onChange={e => updateParam('type', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
-            <option value="">All Types</option>
+            <option value="">{t('filter.allTypes', lang)}</option>
             {types.map(t => (
               <option key={t} value={t}>{t}</option>
             ))}
@@ -95,13 +98,13 @@ export default function FilterSidebar({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Rarity</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.rarity', lang)}</label>
           <select
             value={searchParams.get('rarity') || ''}
             onChange={e => updateParam('rarity', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
-            <option value="">All Rarities</option>
+            <option value="">{t('filter.allRarities', lang)}</option>
             {rarities.map(r => (
               <option key={r} value={r}>{r}</option>
             ))}
@@ -109,7 +112,7 @@ export default function FilterSidebar({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.priceRange', lang)}</label>
           <div className="flex gap-2 items-center">
             <input
               type="number"
@@ -118,7 +121,7 @@ export default function FilterSidebar({
               value={minPrice}
               onChange={e => setMinPrice(e.target.value)}
               onBlur={() => updateParam('minPrice', minPrice)}
-              placeholder="Min"
+              placeholder={t('filter.min', lang)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             />
             <span className="text-gray-400">-</span>
@@ -129,23 +132,23 @@ export default function FilterSidebar({
               value={maxPrice}
               onChange={e => setMaxPrice(e.target.value)}
               onBlur={() => updateParam('maxPrice', maxPrice)}
-              placeholder="Max"
+              placeholder={t('filter.max', lang)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.sortBy', lang)}</label>
           <select
             value={searchParams.get('sort') || 'name'}
             onChange={e => updateParam('sort', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
-            <option value="name">Name</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="newest">Newest First</option>
+            <option value="name">{t('filter.sortName', lang)}</option>
+            <option value="price-asc">{t('filter.sortPriceLow', lang)}</option>
+            <option value="price-desc">{t('filter.sortPriceHigh', lang)}</option>
+            <option value="newest">{t('filter.sortNewest', lang)}</option>
           </select>
         </div>
 
@@ -154,7 +157,7 @@ export default function FilterSidebar({
             onClick={clearFilters}
             className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 transition-colors"
           >
-            Clear Filters
+            {t('filter.clearFilters', lang)}
           </button>
         )}
       </div>
