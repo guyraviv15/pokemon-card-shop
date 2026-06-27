@@ -3,7 +3,7 @@ import { getCards } from "@/lib/data"
 import Link from "next/link"
 
 export default async function AdminPage(props: {
-  searchParams?: Promise<{ error?: string; prices?: string; total?: string }>
+  searchParams?: Promise<{ error?: string; prices?: string; total?: string; seeded?: string }>
 }) {
   const searchParams = await props.searchParams
   const authed = await isAuthenticated()
@@ -16,6 +16,7 @@ export default async function AdminPage(props: {
 
     const pricesUpdated = searchParams?.prices
     const pricesTotal = searchParams?.total
+    const seeded = searchParams?.seeded
 
     return (
       <div>
@@ -24,6 +25,11 @@ export default async function AdminPage(props: {
         {pricesUpdated && (
           <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700">
             Updated prices for {pricesUpdated} of {pricesTotal} cards.
+          </div>
+        )}
+        {seeded && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700">
+            Seeded {seeded} cards into Redis.
           </div>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
