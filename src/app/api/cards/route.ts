@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createCard, updateCard, deleteCard } from "@/lib/data"
+import { createCard, updateCard, deleteCard, getCards } from "@/lib/data"
 import { isAuthenticated } from "@/lib/auth"
 
 async function checkAuth() {
@@ -16,6 +16,10 @@ export async function POST(request: NextRequest) {
 
   try {
     const data = await request.json()
+    const existing = await getCards()
+    if (existing.some(c => c.name.toLowerCase() === (data.name || '').toLowerCase())) {
+      return NextResponse.json({ error: 'You already did this card' }, { status: 409 })
+    }
     const card = await createCard(data)
     return NextResponse.json(card, { status: 201 })
   } catch {

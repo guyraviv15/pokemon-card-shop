@@ -149,16 +149,6 @@ export default function CardForm({ card }: { card?: PokemonCard }) {
     setError('')
 
     try {
-      if (!isEdit) {
-        const existing = await fetch('/api/cards').then(r => r.json())
-        const cards: PokemonCard[] = existing.cards || existing
-        if (cards.some(c => c.name.toLowerCase() === form.name.toLowerCase())) {
-          alert("You already did this card")
-          setLoading(false)
-          return
-        }
-      }
-
       const url = isEdit ? `/api/cards?id=${card.id}` : '/api/cards'
       const method = isEdit ? 'PUT' : 'POST'
 
@@ -170,6 +160,11 @@ export default function CardForm({ card }: { card?: PokemonCard }) {
 
       if (!res.ok) {
         const data = await res.json()
+        if (res.status === 409) {
+          alert(data.error || 'You already did this card')
+          setLoading(false)
+          return
+        }
         throw new Error(data.error || 'Failed to save card')
       }
 
