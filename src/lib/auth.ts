@@ -27,7 +27,7 @@ export async function createSession(): Promise<void> {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
-    path: '/admin',
+    path: '/',
     maxAge: 60 * 60 * 24, // 24 hours
   })
 }

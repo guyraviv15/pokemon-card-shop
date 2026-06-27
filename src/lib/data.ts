@@ -21,7 +21,7 @@ function readCards(): PokemonCard[] {
   return JSON.parse(raw)
 }
 
-function writeCards(cards: PokemonCard[]) {
+export function writeCards(cards: PokemonCard[]) {
   ensureDataDir()
   fs.writeFileSync(CARDS_FILE, JSON.stringify(cards, null, 2), 'utf-8')
 }

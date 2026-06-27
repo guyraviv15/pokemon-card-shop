@@ -40,9 +40,7 @@ export default function RootLayout({
                 <Link href="/cards" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
                   Cards
                 </Link>
-                <Link href="/admin" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                  Admin
-                </Link>
+
               </nav>
             </div>
           </div>

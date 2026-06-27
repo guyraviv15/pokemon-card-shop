@@ -14,20 +14,12 @@ export default function Home() {
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Browse our collection of authentic Pokemon cards. Rare finds, classic sets, and more.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link
-              href="/cards"
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-white text-red-600 font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Browse All Cards
-            </Link>
-            <Link
-              href="/admin"
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-red-700 text-white font-semibold hover:bg-red-800 transition-colors"
-            >
-              Admin Panel
-            </Link>
-          </div>
+          <Link
+            href="/cards"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-white text-red-600 font-semibold hover:bg-gray-100 transition-colors"
+          >
+            Browse All Cards
+          </Link>
         </div>
       </section>
 

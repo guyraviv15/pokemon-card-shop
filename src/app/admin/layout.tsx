@@ -41,6 +41,12 @@ export default async function AdminLayout({
               Add Card
             </Link>
             <Link
+              href="/admin/import"
+              className="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              Bulk Import
+            </Link>
+            <Link
               href="/"
               className="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
             >
